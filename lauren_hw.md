@@ -23,7 +23,7 @@ Wrangling, linking to patient/sample id
 Add bological interpretation  
 What to highlight: cool or previous literature  
 
-Automate process 
+Automate process   
 Take reads all the way to summary statistics 
 One big pipeline of pipelines  
 Make the specific generic  
