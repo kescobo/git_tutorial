@@ -1,5 +1,6 @@
 # Git Boot Camp
 **Led by Kevin Bonham, PhD**
+
 *Wednesday, June 6 2018
 
 10:30 AM - ? PM
@@ -18,11 +19,11 @@ SCI 143*
 
 4. Jupyter lab
 
-  `$ brew install jupyter`
+    `$ brew install jupyter`
 
-  `$ brew install python 2`
+    `$ brew install python 2`
 
-  `$ brew install python 3`
+    `$ brew install python 3`
 
 5. Biobakery
   * Metaphlan2
@@ -95,6 +96,22 @@ Atom tracks your file status
 * Check status of remote repo = `$ git fetch`
 * Update local repo from remote repo = `$ git pull`
     * Specify which remote repo to pull from
+* Set another remote repo = '$ git remote add upstream https://github.com/kescobo/git_tutorial.git'
+    * "upstream" = repo name
+    * https:// = url from clone or download on GitHub
+* Pull from remote = `$ git pull`
+    * Default pulls from "origin"
+    * `$ git pull upstream master`
+    * **Double-check** which branch you are on
+* Make dev branch match master = `$ git checkout sophdev`
+    `$ git merge master`
+
+OR
+
+* Make master branch match sophdev = `$ git checkout master`
+    `$ git merge sophdev`
+
+
 
 ### Copy repo
 1. Fork from origin on GitHub
