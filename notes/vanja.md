@@ -20,3 +20,7 @@ git status #checks the status of your file
 
 git commit -m "Made a new file" #commits to the remote repos with a message
 git log #provides the overview of master and branches
+
+| oh look        | i can make a table     |
+| :------------- | :------------- |
+| cool 1         | cool 2       |
