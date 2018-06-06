@@ -3,7 +3,10 @@
 This is a repo for learning about how to use `git`.
 
 By
+    - Nisreen Abo-Sido
     - Kevin Bonham
     - Becca Gilbert
+    - Vanja Klepec-Ceraj
     - Danielle Peterson
-    - Nisreen Abo-Sido
+    - Sophie Rowland
+    - Lauren Tso
