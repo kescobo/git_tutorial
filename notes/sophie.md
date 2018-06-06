@@ -81,7 +81,7 @@ Atom tracks your file status
 ## How to commit
 * Check status of files = `$ git status`
 * Stage files = `$ git add {new_folder}/{filename}`
-* Commit files = `$ git commit -m <Enter commit message here>`
+* Commit files = `$ git commit -m "Enter commit message here"`
     * `-m` = add message
 * Push & set upstream = `$ git push --set-upstream origin master`
     * Push = `$ git push`
