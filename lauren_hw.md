@@ -24,8 +24,8 @@ Add bological interpretation
 What to highlight: cool or previous literature  
 
 Automate process   
-Take reads all the way to summary statistics 
-One big pipeline of pipelines  
+Take reads all the way to summary statistics   
+One big pipeline of pipelines   
 Make the specific generic  
 Command line utilities: snakemake  
 Functions and packages in Julia/R  
