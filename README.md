@@ -2,4 +2,4 @@
 
 This is a repo for learning about how to use `git`.
 
-By The VKC
+By VKC
