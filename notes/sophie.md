@@ -1,11 +1,11 @@
 # Git Boot Camp
 **Led by Kevin Bonham, PhD**
 
-*Wednesday, June 6 2018
+_Wednesday, June 6 2018_
 
-10:30 AM - ? PM
+_10:30 AM - ? PM_
 
-SCI 143*
+_SCI 143_
 
 ## Set Up
 
@@ -103,17 +103,35 @@ Atom tracks your file status
     * Default pulls from "origin"
     * `$ git pull upstream master`
     * **Double-check** which branch you are on
-* Make dev branch match master = `$ git checkout sophdev`
+* Make master branch match dev = `$ git checkout sophdev`
     `$ git merge master`
 
 OR
 
-* Make master branch match sophdev = `$ git checkout master`
+* Make dev branch match master = `$ git checkout master`
     `$ git merge sophdev`
-
-
 
 ### Copy repo
 1. Fork from origin on GitHub
 2. Clone onto your computer
   * `git clone {insert url here}`
+
+## General Work Flow
+1. Make a branch  
+      `$ git checkout -b {new_branch}`
+2. Commit to branch  
+      `$ git add {filename}`
+      `$ git commit -m "Commit message"`
+      `$ git push --set-upstream origin sophdev`
+3. Pull request to upstream
+        * Submit pull request on GitHub
+        * Address comments
+        * Commit and push any changes
+        * **Do not merge yourself!** Kevin is in charge of merging pull request to upstream
+    1. When merged, pull from upstream (_while in master branch_)  
+        `$ git checkout master`  
+        `$ git pull upstream master`
+    2. Merge sophdev to master  
+        `$ git checkout master`  
+        `$ git merge sophdev`  
+        *If doesn't work, switch sophdev and master*
