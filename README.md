@@ -2,4 +2,11 @@
 
 This is a repo for learning about how to use `git`.
 
-By Sophie Rowland, BA
+By
+    - Nisreen Abo-Sido
+    - Kevin Bonham
+    - Becca Gilbert
+    - Vanja Klepec-Ceraj
+    - Danielle Peterson
+    - Sophie Rowland
+    - Lauren Tso
