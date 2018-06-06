@@ -135,3 +135,16 @@ OR
         `$ git checkout master`  
         `$ git merge sophdev`  
         *If doesn't work, switch sophdev and master*
+
+# Biobakery
+## Metaphlan2
+
+### Install Metaphlan2
+1. Go to [Biobakery](https://bitbucket.org/biobakery/biobakery/wiki/Home)
+2. Click [Metaphlan2](https://bitbucket.org/biobakery/biobakery/wiki/metaphlan2)
+3. Install
+    * With Homebrew  
+    `$ brew tap biobakery/biobakery  
+    $ brew install metaphlan2`
+
+##     
