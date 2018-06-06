@@ -20,7 +20,7 @@ Visual and numeric way to summarize data
 Wrangling, linking to patient/sample id  
 
 **More details:**    
-Add bological interpretation  
+Add biological interpretation  
 What to highlight: cool or previous literature  
 
 Automate process   
