@@ -2,7 +2,7 @@
 
 This is a repo for learning about how to use `git`.
 
-By
+By  
     - Nisreen Abo-Sido
     - Kevin Bonham
     - Becca Gilbert
