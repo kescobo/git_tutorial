@@ -2,5 +2,8 @@
 
 This is a repo for learning about how to use `git`.
 
-By Danielle Peterson
-By Kevin Bonham
+By
+    Kevin Bonham
+    Becca Gilbert
+    Danielle Peterson
+    Nisreen Abo-Sido
