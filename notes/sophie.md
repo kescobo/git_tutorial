@@ -65,6 +65,8 @@ _git_tutorial-1 because previously made git_tutorial_
 * List files in directory = `$ ls` OR `$ ls -a`
 * Remove folder = `rm -r git_tutorial` OR `rm -rf git_tutorial`
   * Use **sparingly**
+* Move files and folders = '$ mv'
+* View preview of file = `$ head`
 
 ### Create a remote repo
 **_Don't do yet_**
@@ -143,8 +145,54 @@ OR
 1. Go to [Biobakery](https://bitbucket.org/biobakery/biobakery/wiki/Home)
 2. Click [Metaphlan2](https://bitbucket.org/biobakery/biobakery/wiki/metaphlan2)
 3. Install
-    * With Homebrew  
-    `$ brew tap biobakery/biobakery  
-    $ brew install metaphlan2`
+    * From Source
+    `$ export PATH=$PATH:~/Downloads/biobakery-metaphlan2-e7761e78f362/`  
+    `$ export PATH=$PATH:~/Downloads/biobakery-metaphlan2-e7761e78f362/utils`  
+    `$ chmod +x ~/Downloads/biobakery-metaphlan2-e7761e78f362`  
+    `which metaphlan2.py`  
+    `metaphlan2.py -h`  
+    * -h = help
+    * If move from downloads, update PATH  
+    `which bowtie2`
 
-##     
+##  What is Metaphlan2 and What is it Used For
+### Metagenomics
+#### 16S rRNA Amplicon Sequencing
+  1. Amplify through PCR
+  2. NextGen Sequencing (Illumina)
+  3. Output = fastq files (text file)
+      * >identifier
+      * AATCGCAT... (Genetic code)
+      * +
+      * FF-... (Quality Score)
+  4. Computational analysis
+      * clustering -> group similar sequences, counting
+      * aligning -> compare to a reference database, classifying
+          * Reference database only includes 16S rRNA sequences
+
+#### Metagenomic Sequencing
+  1. Sequence all DNA
+  2. Output = fastq files
+      * ~100-250 bps long
+  3. Aligning to reference database
+      * Includes full genomes
+  4. Metaphlan2 calculates # of sequences aligning to reference genomes
+      * Determine relative abundances  
+**This method is only as good as your database**
+
+### Metaphlan2 tutorial
+1. Download files  
+`$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/input/SRS014476-Supragingival_plaque.fasta.gz
+$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/input/SRS014494-Posterior_fornix.fasta.gz`
+2. Run sample file  
+`$ metaphlan2.py SRS014476-Supragingival_plaque.fasta.gz  --input_type fasta > SRS014476-Supragingival_plaque_profile.txt`
+    * Error message:  
+    `Traceback (most recent call last):
+  File "/Users/sophierowland/Downloads/biobakery-metaphlan2-e7761e78f362/utils/read_fastx.py", line 9, in <module>
+    from Bio import SeqIO
+ModuleNotFoundError: No module named 'Bio'
+Traceback (most recent call last):
+  File "/Users/sophierowland/Downloads/biobakery-metaphlan2-e7761e78f362/utils/read_fastx.py", line 9, in <module>
+    from Bio import SeqIO
+ModuleNotFoundError: No module named 'Bio'
+OSError: fatal error running '/Users/sophierowland/Downloads/biobakery-metaphlan2-e7761e78f362/utils/read_fastx.py'. Is it in the system path?`
