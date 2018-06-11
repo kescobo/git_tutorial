@@ -116,3 +116,93 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
 
 `$ mv ~/SRS*.fasta.gz ~/gitrepos/metaphlan_tutorial`
 *Only necessary if dir not ~/gitrepos/metaphlan_tutorial*
+
+## Run multiple Samples
+`$ metaphlan2.py SRS014464-Anterior_nares.fasta.gz --input_type fasta --nproc 4 > SRS014464-Anterior_nares_profile.txt`  
+
+`$ metaphlan2.py SRS014470-Tongue_dorsum.fasta.gz --input_type fasta --nproc 4 > SRS014470-Tongue_dorsum_profile.txt`
+
+`$ metaphlan2.py SRS014472-Buccal_mucosa.fasta.gz --input_type fasta --nproc 4 > SRS014472-Buccal_mucosa_profile.txt`
+
+`$ metaphlan2.py SRS014494-Posterior_fornix.fasta.gz --input_type fasta --nproc 4 > SRS014494-Posterior_fornix_profile.txt`
+
+* Create single tab-delimited table from output files
+`$ merge_metaphlan_tables.py *_profile.txt > merged_abundance_table.txt`
+
+`$ less -S merged_abundance_table.txt` :q
+
+# Vistualiza results
+
+## Create a heatmap with hclust2
+* hclust2 = plotting tool
+
+#### Install hclust2
+`$ brew tap biobakery/biobakery`
+
+`$ brew install hclust2`
+
+### Step 1: Generate the species only abundance table
+`$ grep -E "(s__)|(^ID)" merged_abundance_table.txt | grep -v "t__" | sed 's/^.*s__//g' > merged_abundance_table_species.txt`
+
+`$ less -S merged_abundance_table_species.txt` :q
+
+#### What's happening in this code?
+* grep = finds specified patterns within text, "global regular expression print"
+1. grep 1: Searches for `"(s__)|(^ID)"` = lines with species info & also to the header
+    * `grep -E "(s__)|(^ID)" merged_abundance_table.txt`
+2. grep 2: Does NOT print lines with strain info
+    * `grep -v "t__"`
+3. sed: Removes full taxonomy, printing only species name
+    * `sed 's/^.*s__//g'`
+
+### Step 2: Generate the Heatmap
+`$ hclust2.py -i merged_abundance_table_species.txt -o abundance_heatmap_species.png --ftop 25 --f_dist_f braycurtis --s_dist_f braycurtis --cell_aspect_ratio 0.5 -l --flabel_size 6 --slabel_size 6 --max_flabel_len 100 --max_slabel_len 100 --minv 0.1 --dpi 300`
+
+**Error message:**
+
+`hclust2.py: command not found`
+
+* Try to install with conda?
+
+`$ conda install -c bioconda hclust2`
+
+**Error message:**
+
+`AttributeError: Unknown property axisbg`
+
+* Problem with matplotlib
+  * Possibly axisbg -> facecolor?
+* Install matplotlib with Homebrew
+
+`$ brew install matplotlib` - *did not work*
+
+* Install matplotlib with pip - *same error message*
+
+`$ curl -O https://bootstrap.pypa.io/get-pip.py`
+
+`$ python3 get-pip.py`
+
+`$ python3 -mpip install matplotlib`
+
+#### What's happening in this code?
+* Options to select the top 25 features = `--ftop 25`
+* Use Bray-Curtis as distance measure...
+    * between samples = `--s_dist_f braycurtis`
+    * between features = `--f_dist_f braycurtis`
+* Set cell size ratio to 0.5 = `--cell_aspect_ratio 0.5`
+* Use log scale for color scheme = `-l` (?)
+* Set feature and sample size to 6 = `--flabel_size 6 --slabel_size 6`
+* Set max feature and sample label length to 100 = `--max_flabel_len 100 --max_slabel_len 100`
+* Select minimum value to display as 0.1 = `--minv 0.1`
+* Select an image resolution of 300 = `--dpi 300`
+
+## Create a cladogram with graphlan
+
+#### Install graphphlan
+`$ brew tap biobakery/biobakery`
+
+`$ brew install graphlan`
+
+### Step 1: Create the graphlan input files
+
+### Step 2: Create a Cladogram
