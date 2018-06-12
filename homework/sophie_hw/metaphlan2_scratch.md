@@ -205,7 +205,7 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
     * `# All requested packages already installed`
 
 * Nothing has worked thus far
-* [matplotlib] (https://matplotlib.org/users/installing.html#installing-an-official-release)
+* [matplotlib](https://matplotlib.org/users/installing.html#installing-an-official-release)
 * Try `$ xcode-select --install`
     * Already installed, check App store for updates
     * Downloading v. 9.4
@@ -241,6 +241,12 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
 
 `export2graphlan.py: command not found`
 
+#### Solution:
+
+`$ export PATH=$PATH:~/graphlan_commit_edea23c/`  
+`$ export PATH=$PATH:~/graphlan_commit_edea23c/export2graphlan/`  
+`$ chmod +x ~/graphlan_commit_edea23c/`
+
 * Install with conda?
 
 `$ conda install -c bioconda graphlan`
@@ -253,6 +259,22 @@ HTTP errors are often intermittent, and a simple retry will get you on your way.
 * Re-run conda install -> no error
 * Re-run graphlan code -> `export2graphlan.py : command not found`
 
+`$ conda install export2graphlan` (From [graphlan wiki](https://bitbucket.org/nsegata/graphlan/wiki/export2graphlan%20-%20tutorial#rst-header-overview))
+
+**Error message:**
+
+`PackagesNotFoundError: The following packages are not available from current channels:
+
+    - export2graphlan`
+
+* Download graphlan (~/graphlan_commit_edea23c)
+
+`$ export PATH=$PATH:~/graphlan_commit_edea23c/`  
+`$ export PATH=$PATH:~/graphlan_commit_edea23c/export2graphlan/`  
+`$ chmod +x ~/graphlan_commit_edea23c/`
+
+**It worked!**
+
 #### What's happening in this code?
 * Skip rows 1 and 2 in designated file, put in new file (?) = `--skip_rows 1,2 -i merged_abundance_table.txt --tree merged_abundance.tree.txt`
 * Select top 100 most abundant clades = `--annotation merged_abundance.annot.txt --most_abundant 100`
@@ -261,12 +283,16 @@ HTTP errors are often intermittent, and a simple retry will get you on your way.
 * Select taxonomic levels 5 & 6 to be annotated = `--annotations 5,6`
 * Select taxonomic level 7 to be used in external legend = `--external_annotations 7`
 * Set min size of clades annotated as biomarkers to 1 = `--min_clade_size 1`
-
-### Step 2: Create a Cladogram
 * Two output files:
   1. Tree = merged_abundance.tree.txt
   2. Annotation = merged_abundance.annot.txt
 
+### Step 2: Create a Cladogram
+
 `$ graphlan_annotate.py --annot merged_abundance.annot.txt merged_abundance.tree.txt merged_abundance.xml`
 
 `$ graphlan.py --dpi 300 merged_abundance.xml merged_abundance.png --external_legends`
+
+#### What's happening in this code?
+1. First command - creating an xml file from tree and annotation inputs
+2. 
