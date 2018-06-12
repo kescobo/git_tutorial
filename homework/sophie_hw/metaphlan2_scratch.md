@@ -170,6 +170,8 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
 
 `AttributeError: Unknown property axisbg`
 
+#### Solution: update xcode
+
 * Problem with matplotlib
   * Possibly axisbg -> facecolor?
 * Install matplotlib with Homebrew
@@ -208,7 +210,8 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
     * Already installed, check App store for updates
     * Downloading v. 9.4
         * It will take 4 hours?!
-* Then try `$ `
+* Re-try `$ hclust2.py -i merged_abundance_table_species.txt -o abundance_heatmap_species.png --ftop 25 --f_dist_f braycurtis --s_dist_f braycurtis --cell_aspect_ratio 0.5 -l --flabel_size 6 --slabel_size 6 --max_flabel_len 100 --max_slabel_len 100 --minv 0.1 --dpi 300`
+
 
 #### What's happening in this code?
 * Options to select the top 25 features = `--ftop 25`
