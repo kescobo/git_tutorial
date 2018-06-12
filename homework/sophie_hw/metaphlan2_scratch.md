@@ -295,4 +295,4 @@ HTTP errors are often intermittent, and a simple retry will get you on your way.
 
 #### What's happening in this code?
 1. First command - creating an xml file from tree and annotation inputs
-2. 
+2. Second command - creates image, sets resolution `--dpi 300`, requests external legends `--external_legends`
