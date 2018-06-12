@@ -184,6 +184,32 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
 
 `$ python3 -mpip install matplotlib`
 
+* Install with mpip?
+
+`$ python -mpip install -U pip`
+
+**Error message:**
+
+`distributed 1.21.8 requires msgpack, which is not installed.`
+
+  * `$ brew install msgpack`
+    * Ran again, same error
+
+`$ python -mpip install -U matplotlib`
+
+* Same error message, msgpack not installed
+
+`$ conda install -c anaconda msgpack-python`
+    * `# All requested packages already installed`
+
+* Nothing has worked thus far
+* [matplotlib] (https://matplotlib.org/users/installing.html#installing-an-official-release)
+* Try `$ xcode-select --install`
+    * Already installed, check App store for updates
+    * Downloading v. 9.4
+        * It will take 4 hours?!
+* Then try `$ `
+
 #### What's happening in this code?
 * Options to select the top 25 features = `--ftop 25`
 * Use Bray-Curtis as distance measure...
@@ -197,6 +223,7 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
 * Select an image resolution of 300 = `--dpi 300`
 
 ## Create a cladogram with graphlan
+* Took a break from heatmap, too frustrating
 
 #### Install graphphlan
 `$ brew tap biobakery/biobakery`
@@ -205,4 +232,38 @@ OSError: fatal error running '/Users/sophierowland/biobakery-metaphlan2-e7761e78
 
 ### Step 1: Create the graphlan input files
 
+`$ export2graphlan.py --skip_rows 1,2 -i merged_abundance_table.txt --tree merged_abundance.tree.txt --annotation merged_abundance.annot.txt --most_abundant 100 --abundance_threshold 1 --least_biomarkers 10 --annotations 5,6 --external_annotations 7 --min_clade_size 1`
+
+**Error message:**
+
+`export2graphlan.py: command not found`
+
+* Install with conda?
+
+`$ conda install -c bioconda graphlan`
+
+**Error message:**
+
+`An HTTP error occurred when trying to retrieve this URL.
+HTTP errors are often intermittent, and a simple retry will get you on your way.`
+
+* Re-run conda install -> no error
+* Re-run graphlan code -> `export2graphlan.py : command not found`
+
+#### What's happening in this code?
+* Skip rows 1 and 2 in designated file, put in new file (?) = `--skip_rows 1,2 -i merged_abundance_table.txt --tree merged_abundance.tree.txt`
+* Select top 100 most abundant clades = `--annotation merged_abundance.annot.txt --most_abundant 100`
+* Set min abundance threshold to be annotated = `--abundance_threshold 1`
+* Extract min of 10 biomarkers = `--least_biomarkers 10`
+* Select taxonomic levels 5 & 6 to be annotated = `--annotations 5,6`
+* Select taxonomic level 7 to be used in external legend = `--external_annotations 7`
+* Set min size of clades annotated as biomarkers to 1 = `--min_clade_size 1`
+
 ### Step 2: Create a Cladogram
+* Two output files:
+  1. Tree = merged_abundance.tree.txt
+  2. Annotation = merged_abundance.annot.txt
+
+`$ graphlan_annotate.py --annot merged_abundance.annot.txt merged_abundance.tree.txt merged_abundance.xml`
+
+`$ graphlan.py --dpi 300 merged_abundance.xml merged_abundance.png --external_legends`
