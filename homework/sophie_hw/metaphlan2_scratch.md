@@ -296,3 +296,41 @@ HTTP errors are often intermittent, and a simple retry will get you on your way.
 #### What's happening in this code?
 1. First command - creating an xml file from tree and annotation inputs
 2. Second command - creates image, sets resolution `--dpi 300`, requests external legends `--external_legends`
+
+## Create a strain-level marker-based heatmap (Panphlan)
+* Panphlan - ID, track, phylogenetically place individual strains from metagenomes
+
+#### Download files
+
+`$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/output/13530241_SF05.fasta.gz.bowtie2out.txt`
+
+`$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/output/13530241_SF06.fasta.gz.bowtie2out.txt`
+
+`$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/output/19272639_SF05.fasta.gz.bowtie2out.txt`
+
+`$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/output/19272639_SF06.fasta.gz.bowtie2out.txt`
+
+`$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/output/40476924_SF05.fasta.gz.bowtie2out.txt`
+
+`$ curl -O https://bitbucket.org/biobakery/biobakery/raw/tip/demos/biobakery_demos/data/metaphlan2/output/40476924_SF06.fasta.gz.bowtie2out.txt`
+
+### Step 1: Create a file of abundances for all markers in selected species
+`$ metaphlan2.py --input_type bowtie2out -t clade_specific_strain_tracker --clade s__Eubacterium_siraeum --min_ab 1.0 13530241_SF05.fasta.gz.bowtie2out.txt > 13530241_SF05.siraeum.txt`
+
+`$ metaphlan2.py --input_type bowtie2out -t clade_specific_strain_tracker --clade s__Eubacterium_siraeum --min_ab 1.0 13530241_SF06.fasta.gz.bowtie2out.txt > 13530241_SF06.siraeum.txt`
+
+`$ metaphlan2.py --input_type bowtie2out -t clade_specific_strain_tracker --clade s__Eubacterium_siraeum --min_ab 1.0 19272639_SF05.fasta.gz.bowtie2out.txt > 19272639_SF05.siraeum.txt`
+
+`$ metaphlan2.py --input_type bowtie2out -t clade_specific_strain_tracker --clade s__Eubacterium_siraeum --min_ab 1.0 19272639_SF06.fasta.gz.bowtie2out.txt > 19272639_SF06.siraeum.txt`
+
+`$ metaphlan2.py --input_type bowtie2out -t clade_specific_strain_tracker --clade s__Eubacterium_siraeum --min_ab 1.0 40476924_SF05.fasta.gz.bowtie2out.txt > 40476924_SF05.siraeum.txt`
+
+`$ metaphlan2.py --input_type bowtie2out -t clade_specific_strain_tracker --clade s__Eubacterium_siraeum --min_ab 1.0 40476924_SF06.fasta.gz.bowtie2out.txt > 40476924_SF06.siraeum.txt`
+
+### Step 2: Merge the marker abundance files
+`$ merge_metaphlan_tables.py *.siraeum.txt > siraeum_tracker.txt`
+
+### Step 3: Create a Heatmap
+`$ hclust2.py -i siraeum_tracker.txt -o siraeum_tracker.png --skip_rows 1 --f_dist_f hamming --no_flabels --dpi 300 --cell_aspect_ratio 0.01`
+
+* Success with no errors!
